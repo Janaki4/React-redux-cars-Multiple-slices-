@@ -1,20 +1,26 @@
-import { useSelector ,useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { deleteCar } from "../store"
 
 function CarList() {
     const dispatch = useDispatch()
-    const carsList = useSelector((state) => {
-        return state.cars.cars
+    const {cars,name} = useSelector(({ form , cars: { cars, searchTerm } }) => {
+        const filteredCars = cars.filter((car) => car.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        
+        return {
+            cars: filteredCars,
+            name:form.name
+        }
     })
     const handleDeleteCar = (car) => {
         dispatch(deleteCar(car.id))
     }
 
-    const renderedCars = carsList.map(car => {
-        return (<div key={car.id} className="panel">
+    const renderedCars = cars.map(car => {
+        const bold = name && car.name.toLowerCase().includes(name.toLowerCase())
+        return (<div key={car.id} className={`panel ${bold && "bold"}`}>
             <p>{car.name} - ${car.cost}</p>
             <button className="button is-danger"
-                onClick={()=> handleDeleteCar(car)}>
+                onClick={() => handleDeleteCar(car)}>
                 Delete
             </button>
         </div>)

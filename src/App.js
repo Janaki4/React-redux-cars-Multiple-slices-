@@ -1,13 +1,13 @@
 import CarForm from "./Components/CarForm"
 import CarList from "./Components/CarList"
-import CarSubmit from "./Components/CarSubmit"
+import CarSearch from "./Components/CarSearch"
 import CarValue from "./Components/CarValue"
 
 function App() {
     return (<div className="container is-fluid">
         <CarForm />
+        <CarSearch />  
         <CarList /> 
-        <CarSubmit />  
         <CarValue/>
     </div>)
 }

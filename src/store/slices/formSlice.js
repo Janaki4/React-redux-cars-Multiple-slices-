@@ -6,7 +6,7 @@ const formSlice = createSlice({
     initialState: {
         name: "",
         cost: 0
-        
+
     },
     reducers: {
         changeName(state, action) {
@@ -16,10 +16,10 @@ const formSlice = createSlice({
             state.cost = action.payload
         }
     },
-    extraReducers(builder) { 
-        builder.addCase(addCar, (state, action) => { 
+    extraReducers(builder) {
+        builder.addCase(addCar, (state, action) => {
             state.name = ""
-            state.cost=0
+            state.cost = 0
         })
     }
 })
